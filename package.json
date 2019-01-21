@@ -1,0 +1,25 @@
+{
+  "name": "node_crud",
+  "version": "1.0.0",
+  "description": "Node crud with mysql",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/CUManiar/Node_Crud.git"
+  },
+  "author": "Chirag Maniar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CUManiar/Node_Crud/issues"
+  },
+  "homepage": "https://github.com/CUManiar/Node_Crud#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "mysql": "^2.16.0",
+    "nodemon": "^1.18.9"
+  }
+}

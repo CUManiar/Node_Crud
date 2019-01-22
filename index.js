@@ -68,8 +68,6 @@ app.delete('/employees/:id', (req, res) => {
 //Insert an employee operation
 app.post('/employees', (req, res) => {
     let emp = req.body;
-    var query = "set @empId = ?;set @name = ?;set @empCode = ?;set @salary = ?; \
-    call employeeInsertOrUpdate(@empID,@name,@empCode,@salary);";
     var sql = "insert into employee(empId,name,empCode,salary) values (?,?,?,?)";
     mysqlConnection.query(sql, [emp.empId, emp.name, emp.empCode, emp.salary], (err, result) => {
         if (!err)
@@ -82,15 +80,10 @@ app.post('/employees', (req, res) => {
 //Update an employee data operation
 app.put('/employees', (req, res) => {
     let emp = req.body;
-    var query = "set @empId = ?;set @name = ?;set @empCode = ?;set @salary = ?; \
-    call employeeInsertOrUpdate(@empID,@name,@empCode,@salary);";
     var sql = "update employee set name=?,empCode=?,salary=? where empId = ?";
-    mysqlConnection.query(sql, [emp.name, emp.empCode, emp.salary, emp.empId], (err, rows, fields) => {
+    mysqlConnection.query(sql, [emp.name, emp.empCode, emp.salary, emp.empId], (err) => {
         if (!err)
-            rows.forEach(element => {
-                if(element.constructor == Array)
-                res.send('Employee updated successfully!');
-            });
+           res.send("Employee updated successfully.");
         else
             res.send(err);
     })

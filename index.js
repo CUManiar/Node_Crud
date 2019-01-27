@@ -1,3 +1,7 @@
+// Prerequisites:
+// 1. Install express.json, body-parser, mysql libraries
+// 2. For runtime update install nodemon library
+
 //Initialize mysql connection
 const mysql = require('mysql');
 

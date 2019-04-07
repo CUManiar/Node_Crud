@@ -27,7 +27,9 @@ var mysqlConnection = mysql.createConnection({
     multipleStatements: true  //To allow multiple statement
 });
 
-
+/**
+ * Connects with mysql data base and check connection established properly
+ */
 mysqlConnection.connect((err) => {
     if (!err)
         console.log('DB connection succeded.');
@@ -51,7 +53,7 @@ app.get('/employees', (req, res) => {
 
 //GET perticular data operation
 app.get('/employees/:id', (req, res) => {
-    mysqlConnection.query('select * from employee where empId = ?',[req.params.id], (err, rows, fields) => {
+    mysqlConnection.query('select * from employee where empId = ?', [req.params.id], (err, rows, fields) => {
         if (!err)
             res.send(rows);
         else
@@ -61,7 +63,7 @@ app.get('/employees/:id', (req, res) => {
 
 //DELETE perticular data operation
 app.delete('/employees/:id', (req, res) => {
-    mysqlConnection.query('delete from employee where empId = ?',[req.params.id], (err, rows, fields) => {
+    mysqlConnection.query('delete from employee where empId = ?', [req.params.id], (err, rows, fields) => {
         if (!err)
             res.send('Employee deleted successfully.');
         else
@@ -75,7 +77,7 @@ app.post('/employees', (req, res) => {
     var sql = "insert into employee(empId,name,empCode,salary) values (?,?,?,?)";
     mysqlConnection.query(sql, [emp.empId, emp.name, emp.empCode, emp.salary], (err, result) => {
         if (!err)
-           res.send('Employee inserted successfully : '+ result);
+            res.send('Employee inserted successfully : ' + result);
         else
             res.send(err);
     })
@@ -87,7 +89,7 @@ app.put('/employees', (req, res) => {
     var sql = "update employee set name=?,empCode=?,salary=? where empId = ?";
     mysqlConnection.query(sql, [emp.name, emp.empCode, emp.salary, emp.empId], (err) => {
         if (!err)
-           res.send("Employee updated successfully.");
+            res.send("Employee updated successfully.");
         else
             res.send(err);
     })
